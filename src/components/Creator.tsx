@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { SaveInStorage } from "../helpers/SaveInStorage";
 
-export const Creator = () => {
+export const Creator = ({ setListadoState }) => {
   const title_section = "Add Movie";
   const [movieState, setMovieState] = useState({
     title: "",
@@ -8,13 +9,15 @@ export const Creator = () => {
   });
 
   const getFormValues = (e: React.FormEvent<HTMLFormElement>) => {
+    let previousElements = JSON.parse(localStorage.getItem("movies"));
+
     // The prevent default is to prevent the form reloading the screen
     e.preventDefault();
 
     //get the data from the form
     const target = e.target;
-    let title = target.title.value;
-    let description = target.description.value;
+    const title = target.title.value;
+    const description = target.description.value;
 
     //Create object of the movie to save
 
@@ -28,35 +31,20 @@ export const Creator = () => {
     // Set the state to the newly created movie
     setMovieState(movie);
 
+    //Now we update the state of the main list with the newly created movie. If the array is empty, spreads and adds the movie (active if
+    // there's a movie already inside) and if not, it initializes the listadoState as an array containing the new movie
+
+    setListadoState((elementos) => {
+      if (Array.isArray(elementos)) return [...elementos, movie];
+      else {
+        return [movie];
+      }
+    });
+
     // Save in the local storage the movie. Since we can only save strings or numbers in the local storage, we have to transform
     // the object movie, into a string.
 
-    const saveInStorage = (movie) => {
-      // Get the elements in LocalStorage. Since they're stored there, we need to transform them back into an object (oposite of stringify)
-
-      let elements = JSON.parse(localStorage.getItem("movies"));
-
-      console.log(elements);
-
-      // Check if it's an array, because if it's not I have to create it from scratch
-
-      if (Array.isArray(elements)) {
-        // Add a new element if it's an array
-        elements.push(movie);
-      } else {
-        // if it's not an array, create one with the new movie
-        elements = [movie];
-      }
-
-      // Save in LocalStorage
-
-      localStorage.setItem("movies", JSON.stringify(elements));
-      // Return Object
-
-      return movie;
-    };
-
-    saveInStorage(movie);
+    SaveInStorage("movies", movie);
   };
 
   return (
