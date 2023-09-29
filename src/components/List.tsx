@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Edit } from "./Edit";
 
 export const List = ({ listadoState, setListadoState }) => {
   // Since the whole list of movies will be loading when the page loads, we need to also get, update and refresh the list.
@@ -8,6 +9,8 @@ export const List = ({ listadoState, setListadoState }) => {
   //             vvvvvvv
 
   // const [listadoState, setListadoState] = useState([]);
+
+  const [edit, setEdit] = useState(0);
 
   // We're using a useEffect to load once, when the page loads, all the movies saved in the local storage get transformed into an object
 
@@ -20,6 +23,24 @@ export const List = ({ listadoState, setListadoState }) => {
 
     // Will trigger the useState and will send it the list of movies (that previously we retrieved from the local storage)
     setListadoState(movies);
+    return movies;
+  };
+
+  // Function to delete the movie. We need to find in the local storage what movie we want to delete, and that's why we give them an
+  // id.
+
+  const deleteMovie = (id) => {
+    // In order to delete them we need. 1- Get the stored movies
+    // we're doing that above, getting the movies from the LS.
+    let storedMovies = getTheMovies();
+    // 2- Filter those movies to delete the one I don't want, and leave the rest
+    let new_array_movies = storedMovies.filter(
+      (movie) => movie.id !== parseInt(id)
+    );
+    // 3- Update the status of the list
+    setListadoState(new_array_movies);
+    // 4- Update the data in the localStorage
+    localStorage.setItem("movies", JSON.stringify(new_array_movies));
   };
 
   return (
@@ -30,14 +51,31 @@ export const List = ({ listadoState, setListadoState }) => {
           return (
             <article key={movie.id} className="movie-item">
               <h3 className="title">{movie.title}</h3>
-              <p className="description">{movie.description}n</p>
-              <button className="edit">Edit</button>
-              <button className="delete">Delete</button>
+              <p className="description">{movie.description}</p>
+              <button
+                className="edit"
+                onClick={() => {
+                  setEdit(movie.id);
+                }}
+              >
+                Edit
+              </button>
+              <button
+                className="delete"
+                onClick={() => {
+                  deleteMovie(movie.id);
+                }}
+              >
+                Delete
+              </button>
+
+              {/* The edit form appears */}
+              {edit === movie.id && <Edit />}
             </article>
           );
         })
       ) : (
-        <h3>No movies to be shown. Please add some on the side panel</h3>
+        <h4>No movies to be shown. Please add some on the side panel</h4>
       )}
     </>
   );

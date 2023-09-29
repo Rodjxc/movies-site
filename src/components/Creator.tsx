@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SaveInStorage } from "../helpers/SaveInStorage";
 
 export const Creator = ({ setListadoState }) => {
-  const title_section = "Add Movie";
+  const title_section = "Add a movie";
   const [movieState, setMovieState] = useState({
     title: "",
     description: "",
@@ -51,8 +51,8 @@ export const Creator = ({ setListadoState }) => {
     <div className="add">
       <h3 className="title">{title_section}</h3>
       <form onSubmit={getFormValues}>
-        <input type="text" placeholder="Title" name="title" />
-        <textarea placeholder="Description" name="description"></textarea>
+        <input type="text" placeholder="Title of the Movie" name="title" />
+        <textarea placeholder="Comments" name="description"></textarea>
         <input type="submit" value="Save" />
       </form>
     </div>

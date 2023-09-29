@@ -18,7 +18,7 @@ function App() {
           <div className="logo">
             <div className="play"></div>
           </div>
-          <h1>My Movies</h1>
+          <h1>MovieTrack</h1>
         </header>
 
         {/* Navbar */}
@@ -30,9 +30,6 @@ function App() {
             </li>
             <li>
               <a href="">Movies</a>
-            </li>
-            <li>
-              <a href="">Blog</a>
             </li>
             <li>
               <a href="">Contact</a>
@@ -52,9 +49,7 @@ function App() {
           <Creator setListadoState={setListadoState} />
         </aside>
         {/* Footer */}
-        <footer className="footer">
-          &copy; Rod Jimeno, JS Master ES12 & TS
-        </footer>
+        <footer className="footer">&copy; Rod J, MovieTrack</footer>
       </div>
     </>
   );
