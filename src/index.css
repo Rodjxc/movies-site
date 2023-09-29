@@ -115,7 +115,7 @@ body {
 button,
 input[type="submit"],
 input[type="button"] {
-  width: 70px;
+  width: 80px;
   background: #67aeff;
   color: rgb(255, 255, 255);
   outline: 0;
@@ -140,6 +140,21 @@ input[type="button"] {
 
 .movie-item .edit {
   margin-right: 15px;
+}
+
+.form input[type="text"],
+.form textarea {
+  display: block;
+  margin: 0px auto;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  background: #f6f7f9;
+  color: #454545;
+  width: 80%;
+  opacity: 4;
+  outline: 0;
+  border-color: transparent;
 }
 
 /* STYLES SIDEBAR*/

@@ -70,7 +70,14 @@ export const List = ({ listadoState, setListadoState }) => {
               </button>
 
               {/* The edit form appears */}
-              {edit === movie.id && <Edit />}
+              {edit === movie.id && (
+                <Edit
+                  movie={movie}
+                  getTheMovies={getTheMovies}
+                  setEdit={setEdit}
+                  setListadoState={setListadoState}
+                />
+              )}
             </article>
           );
         })
