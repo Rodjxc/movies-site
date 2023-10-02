@@ -45,7 +45,12 @@ function App() {
 
         {/* SIDEBAR  */}
         <aside className="sidebar">
-          <Searchbar />
+          {/* Since in the searchbar we need access to all the list of movies, we'll pass as props the same 
+          functions to get access to the list from the LS */}
+          <Searchbar
+            listadoState={listadoState}
+            setListadoState={setListadoState}
+          />
           <Creator setListadoState={setListadoState} />
         </aside>
         {/* Footer */}

@@ -252,3 +252,7 @@ input[type="button"] {
     width: 80%;
   }
 }
+
+.not-found {
+  color: red;
+}

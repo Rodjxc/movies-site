@@ -8,7 +8,7 @@ export const Creator = ({ setListadoState }) => {
     description: "",
   });
 
-  const getFormValues = (e: React.FormEvent<HTMLFormElement>) => {
+  const getFormValues = (e: ChangeEvent<HTMLInputElement>) => {
     let previousElements = JSON.parse(localStorage.getItem("movies"));
 
     // The prevent default is to prevent the form reloading the screen
