@@ -29,13 +29,13 @@ export const List = ({ listadoState, setListadoState }) => {
   // Function to delete the movie. We need to find in the local storage what movie we want to delete, and that's why we give them an
   // id.
 
-  const deleteMovie = (id: number) => {
+  const deleteMovie = (id) => {
     // In order to delete them we need. 1- Get the stored movies
     // we're doing that above, getting the movies from the LS.
     let storedMovies = getTheMovies();
     // 2- Filter those movies to delete the one I don't want, and leave the rest
     let new_array_movies = storedMovies.filter(
-      (movie: string) => movie.id !== parseInt(id)
+      (movie) => movie.id !== parseInt(id)
     );
     // 3- Update the status of the list
     setListadoState(new_array_movies);

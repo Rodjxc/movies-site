@@ -31,9 +31,6 @@ function App() {
             <li>
               <a href="">Movies</a>
             </li>
-            <li>
-              <a href="">Contact</a>
-            </li>
           </ul>
         </nav>
         {/* Main content*/}

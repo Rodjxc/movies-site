@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { SaveInStorage } from "../helpers/SaveInStorage";
 
+// Below, we're telling TS that the const Creator is a React Functional Component
+
 export const Creator = ({ setListadoState }) => {
   const title_section = "Add a movie";
   const [movieState, setMovieState] = useState({
@@ -8,8 +10,8 @@ export const Creator = ({ setListadoState }) => {
     description: "",
   });
 
-  const getFormValues = (e: ChangeEvent<HTMLInputElement>) => {
-    let previousElements = JSON.parse(localStorage.getItem("movies"));
+  const getFormValues = (e) => {
+    e.preventDefault();
 
     // The prevent default is to prevent the form reloading the screen
     e.preventDefault();
