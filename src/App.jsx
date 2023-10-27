@@ -1,5 +1,5 @@
 import "./index.css";
-import { List } from "./components/List";
+import { List } from "./components/List.jsx";
 import { Searchbar } from "./components/Searchbar";
 import { Creator } from "./components/Creator";
 import { useState } from "react";
